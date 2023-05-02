@@ -20,7 +20,7 @@ import java.util.Set;
  * adding additional layer of security and also stopping invalid data to make potentially very taxing operations.
  */
 @RestController
-@RequestMapping("/api/healthcare/bulgaria/specialties")
+@RequestMapping("/api/healthcare/bulgaria/doctors/specialties")
 @RequiredArgsConstructor
 @Validated
 public class SpecialtyController {

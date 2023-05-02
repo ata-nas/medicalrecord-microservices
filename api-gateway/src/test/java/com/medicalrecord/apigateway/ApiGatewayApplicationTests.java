@@ -1,10 +1,10 @@
-package com.medicalrecord.doctorservice;
+package com.medicalrecord.apigateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DoctorServiceTests {
+class ApiGatewayApplicationTests {
 
     @Test
     void contextLoads() {
