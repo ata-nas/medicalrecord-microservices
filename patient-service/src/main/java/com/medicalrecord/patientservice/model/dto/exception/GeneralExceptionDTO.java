@@ -18,6 +18,6 @@ public class GeneralExceptionDTO {
 
     private final HttpStatus error;
 
-    private final String  message;
+    private final String message;
 
 }

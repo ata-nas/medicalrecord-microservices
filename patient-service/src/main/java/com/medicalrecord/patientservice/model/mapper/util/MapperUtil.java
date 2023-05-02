@@ -6,8 +6,6 @@ import org.mapstruct.MapperConfig;
 import org.mapstruct.Named;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
-
 /**
  * Utility for MapStruct. Here are methods that define what a validly mapped Entity means in my domain.
  * Most of the methods (defined - "...CreateUpdate") that pull from repositories are pulling Entities that are

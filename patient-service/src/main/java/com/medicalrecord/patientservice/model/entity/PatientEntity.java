@@ -49,7 +49,8 @@ public class PatientEntity extends BaseEntity {
     private boolean deleted;
 
     /**
-     *  Adder method for Mapstruct Strategy, otherwise it rewrites the whole collection and the behavior is not desired.
+     * Adder method for Mapstruct Strategy, otherwise it rewrites the whole collection and the behavior is not desired.
+     *
      * @param toAdd - the PatientInsuranceHistoryEntity to be added
      * @return this - PatientEntity
      */

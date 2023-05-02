@@ -10,7 +10,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 @Mapper(componentModel = "spring", uses = MapperUtil.class, collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED)

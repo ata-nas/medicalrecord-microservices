@@ -18,7 +18,7 @@ public class NoSuchEntityFoundException extends RuntimeException {
         String message = String.format(
                 "%s with field: '%s' and value: '%s' was not found!",
                 entity, field, value
-                );
+        );
         data = generateDTO(message);
     }
 
