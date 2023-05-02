@@ -4,6 +4,7 @@ import com.medicalrecord.doctorservice.model.dto.doctor.CreateDoctorDTO;
 import com.medicalrecord.doctorservice.model.dto.doctor.DoctorDTO;
 import com.medicalrecord.doctorservice.model.dto.doctor.UpdateDoctorDTO;
 import com.medicalrecord.doctorservice.model.validation.ExistingDoctorUicValidation;
+import com.medicalrecord.doctorservice.model.validation.ExistingGpUicValidation;
 import com.medicalrecord.doctorservice.service.DoctorService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -37,6 +38,7 @@ public class DoctorController {
     public ResponseEntity<DoctorDTO> gp(
             @PathVariable
             @NotBlank
+            @ExistingGpUicValidation(message = "Invalid path! Gp with given {uic} does not exist!")
             String uic
     ) {
         return ResponseEntity.ok(doctorService.getByUicGpToDTO(uic));

@@ -1,7 +1,6 @@
 package com.medicalrecord.patientservice.config;
 
 import com.medicalrecord.patientservice.client.DoctorClient;
-import com.medicalrecord.patientservice.exception.notfound.NoSuchGpEntityFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancedExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
@@ -37,4 +36,5 @@ public class WebClientConfig {
                 .build();
         return httpServiceProxyFactory.createClient(DoctorClient.class);
     }
+
 }
