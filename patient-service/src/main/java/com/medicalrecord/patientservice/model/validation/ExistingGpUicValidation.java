@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
  * Null values are considered valid!
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+@Target({ElementType.TYPE_USE, ElementType.FIELD})
 @Constraint(validatedBy = ExistingGpUicValidator.class)
 public @interface ExistingGpUicValidation {
 

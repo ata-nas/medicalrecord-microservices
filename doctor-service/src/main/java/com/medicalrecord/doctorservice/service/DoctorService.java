@@ -12,9 +12,11 @@ public interface DoctorService {
 
     DoctorEntity getByUic(String uic);
 
+    DoctorDTO getByUicToDTO(String uic);
+
     GpEntity getByUicGp(String uic);
 
-    DoctorDTO getByUicToDTO(String uic);
+    DoctorDTO getByUicGpToDTO(String uic);
 
     Set<DoctorEntity> getAll();
 

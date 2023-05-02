@@ -33,6 +33,15 @@ public class DoctorController {
         return ResponseEntity.ok(doctorService.getByUicToDTO(uic));
     }
 
+    @GetMapping("/gp/{uic}")
+    public ResponseEntity<DoctorDTO> gp(
+            @PathVariable
+            @NotBlank
+            String uic
+    ) {
+        return ResponseEntity.ok(doctorService.getByUicGpToDTO(uic));
+    }
+
     @GetMapping()
     public ResponseEntity<Set<DoctorDTO>> doctors() {
         return ResponseEntity.ok(doctorService.getAllToDTO());

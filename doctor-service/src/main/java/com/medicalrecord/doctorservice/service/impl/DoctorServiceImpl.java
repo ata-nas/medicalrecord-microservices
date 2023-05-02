@@ -37,14 +37,19 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public DoctorDTO getByUicToDTO(String uic) {
+        return doctorMapper.toDTO(getByUic(uic));
+    }
+
+    @Override
     public GpEntity getByUicGp(String uic) {
         return gpRepository.findByUicAndDeletedFalse(uic)
                 .orElseThrow(() -> new NoSuchGpEntityFoundException("uic", uic));
     }
 
     @Override
-    public DoctorDTO getByUicToDTO(String uic) {
-        return doctorMapper.toDTO(getByUic(uic));
+    public DoctorDTO getByUicGpToDTO(String uic) {
+        return doctorMapper.toDTO(getByUicGp(uic));
     }
 
     @Override
