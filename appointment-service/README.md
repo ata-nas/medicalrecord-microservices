@@ -1,11 +1,14 @@
 # Read Me First
+
 The following was discovered as part of building this project:
 
-* The original package name 'com.medicalrecord.appointment-service' is invalid and this project uses 'com.medicalrecord.appointmentservice' instead.
+* The original package name 'com.medicalrecord.appointment-service' is invalid and this project uses '
+  com.medicalrecord.appointmentservice' instead.
 
 # Getting Started
 
 ### Reference Documentation
+
 For further reference, please consider the following sections:
 
 * [Official Gradle documentation](https://docs.gradle.org)
@@ -22,6 +25,7 @@ For further reference, please consider the following sections:
 * [Config Client Quick Start](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_client_side_usage)
 
 ### Guides
+
 The following guides illustrate how to use some features concretely:
 
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
@@ -35,6 +39,7 @@ The following guides illustrate how to use some features concretely:
 * [Validation](https://spring.io/guides/gs/validating-form-input/)
 
 ### Additional Links
+
 These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
