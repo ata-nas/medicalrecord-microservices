@@ -19,3 +19,7 @@ spring:
           uri: lb://doctor-service
           predicates:
             - Path=/api/healthcare/bulgaria/doctors/**
+        - id: patient-service
+          uri: lb://patient-service
+          predicates:
+            - Path=/api/healthcare/bulgaria/patients/**
