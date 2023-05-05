@@ -33,6 +33,19 @@ public interface PatientRepository extends JpaRepository<PatientEntity, Long> {
     void softCreate(String uic);
 
     /**
+     * Patient if is insured currently, otherwise empty optional. Soft-deleted are excluded!
+     *
+     * @param currDate as of LocalDate.now();
+     * @param uic      the uic of the desired patient
+     * @return all patients that are currently insured, soft-deleted are excluded!
+     */
+    @Query(
+            "SELECT p FROM PatientEntity p JOIN p.insurances i " +
+                    "WHERE (p.uic = :uic) AND (p.deleted = FALSE) AND (:currDate BETWEEN i.startDate AND i.endDate)"
+    )
+    Optional<PatientEntity> findPatientIfCurrentlyInsuredAndNotDeleted(String uic, LocalDate currDate);
+
+    /**
      * All patients that are currently insured, soft-deleted are excluded!
      *
      * @param currDate as of LocalDate.now();

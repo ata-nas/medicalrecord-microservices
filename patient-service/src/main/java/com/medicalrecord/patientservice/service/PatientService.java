@@ -25,6 +25,8 @@ public interface PatientService {
 
     void delete(String uic);
 
+    boolean patientCurrentlyInsuredByUic(String uic);
+
     Set<PatientDTO> getAllPatientsCurrentlyInsured();
 
     Set<PatientDTO> getAllPatientsCurrentlyNotInsured();

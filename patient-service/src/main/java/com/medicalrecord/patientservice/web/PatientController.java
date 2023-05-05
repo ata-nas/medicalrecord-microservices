@@ -38,6 +38,17 @@ public class PatientController {
         return ResponseEntity.ok(patientService.getByUicToDTO(uic));
     }
 
+    @GetMapping("/insured/{uic}")
+    public ResponseEntity<Void> patientCurrentlyInsured(
+            @PathVariable
+            @NotBlank
+            @ExistingPatientUicValidation(message = "Illegal path! Patient with given {uic} does not exist!")
+            String uic
+    ) {
+        return patientService.patientCurrentlyInsuredByUic(uic) ?
+                ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
+
     @GetMapping
     public ResponseEntity<Set<PatientDTO>> patients() {
         return ResponseEntity.ok(patientService.getAllToDTO());

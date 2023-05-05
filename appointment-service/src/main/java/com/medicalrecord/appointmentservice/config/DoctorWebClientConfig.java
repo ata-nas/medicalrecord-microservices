@@ -1,6 +1,6 @@
-package com.medicalrecord.patientservice.config;
+package com.medicalrecord.appointmentservice.config;
 
-import com.medicalrecord.patientservice.client.DoctorClient;
+import com.medicalrecord.appointmentservice.client.DoctorClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancedExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 
 @Configuration
 @RequiredArgsConstructor
-public class WebClientConfig {
+public class DoctorWebClientConfig {
 
     private final LoadBalancedExchangeFilterFunction filterFunction;
 

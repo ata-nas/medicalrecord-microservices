@@ -1,6 +1,7 @@
-package com.medicalrecord.patientservice.config;
+package com.medicalrecord.appointmentservice.config;
 
-import com.medicalrecord.patientservice.client.DoctorClient;
+import com.medicalrecord.appointmentservice.client.DoctorClient;
+import com.medicalrecord.appointmentservice.client.PatientClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancedExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
@@ -13,14 +14,14 @@ import reactor.core.publisher.Mono;
 
 @Configuration
 @RequiredArgsConstructor
-public class WebClientConfig {
+public class PatientWebClientConfig {
 
     private final LoadBalancedExchangeFilterFunction filterFunction;
 
-    public WebClient doctorWebClient() {
+    public WebClient patientWebClient() {
         return WebClient.builder()
                 .defaultStatusHandler(HttpStatusCode::isError, response -> Mono.empty())
-                .baseUrl("http://doctor-service")
+                .baseUrl("http://patient-service")
                 .filter(filterFunction)
                 .build();
         // TODO improve this, handle exceptions better, for now used only in gp uic constraint validator, returns
@@ -28,12 +29,12 @@ public class WebClientConfig {
     }
 
     @Bean
-    public DoctorClient doctorClient() {
+    public PatientClient patientClient() {
         HttpServiceProxyFactory httpServiceProxyFactory
                 = HttpServiceProxyFactory
-                .builder(WebClientAdapter.forClient(doctorWebClient()))
+                .builder(WebClientAdapter.forClient(patientWebClient()))
                 .build();
-        return httpServiceProxyFactory.createClient(DoctorClient.class);
+        return httpServiceProxyFactory.createClient(PatientClient.class);
     }
 
 }

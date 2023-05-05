@@ -77,6 +77,11 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    public boolean patientCurrentlyInsuredByUic(String uic) {
+        return patientRepository.findPatientIfCurrentlyInsuredAndNotDeleted(uic, LocalDate.now()).isPresent();
+    }
+
+    @Override
     public Set<PatientDTO> getAllPatientsCurrentlyInsured() {
         Set<PatientDTO> all = patientMapper.allToDTO(patientRepository.findAllCurrentlyInsured(LocalDate.now()));
         if (all.isEmpty()) {

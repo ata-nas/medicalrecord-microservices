@@ -1,0 +1,42 @@
+server:
+  port: 8083
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_LOCAL_HOST:localhost}:3306/medicalrecord_appointment_service?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+    username: ${MYSQL_LOCAL_USER}
+    password: ${MYSQL_LOCAL_PASS}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: UNSPECIFIED
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    blog: WARN
+    org: WARN
+    org.hibernate.orm.jdbc.bind: TRACE
+    sql: DEBUG
