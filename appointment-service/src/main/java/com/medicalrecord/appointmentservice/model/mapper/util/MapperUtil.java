@@ -1,5 +1,6 @@
 package com.medicalrecord.appointmentservice.model.mapper.util;
 
+import com.medicalrecord.appointmentservice.client.PatientClient;
 import com.medicalrecord.appointmentservice.exception.notfound.NoSuchDiagnoseEntityFoundException;
 import com.medicalrecord.appointmentservice.exception.notfound.NoSuchPricingHistoryEntityFoundException;
 import com.medicalrecord.appointmentservice.model.entity.DiagnoseEntity;
@@ -26,6 +27,7 @@ public class MapperUtil {
 
     private final DiagnoseRepository diagnoseRepository;
     private final PricingHistoryRepository pricingHistoryRepository;
+    private final PatientClient patientClient;
 
     @Named("toUpper")
     public static String toUpper(String s) {
@@ -45,6 +47,11 @@ public class MapperUtil {
             throw new NoSuchDiagnoseEntityFoundException("No Diagnose by given {name} found!");
         }
         return all;
+    }
+
+    @Named("insuredPatient")
+    public boolean insuredPatient(String patientUic) {
+        return patientClient.patientCurrentlyInsured(patientUic).getStatusCode().is2xxSuccessful();
     }
 
 }

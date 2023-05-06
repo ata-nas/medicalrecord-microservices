@@ -68,4 +68,7 @@ public class AppointmentEntity extends BaseEntity {
     @JoinColumn(name = "price_history_id")
     private PricingHistoryEntity price;
 
+    @Column(name = "insured_patient")
+    private boolean insuredPatient;
+
 }

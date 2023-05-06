@@ -39,4 +39,7 @@ public class AppointmentDTO {
     @OrderBy
     private Set<@Valid DiagnoseDTO> diagnoses;
 
+    @NotNull
+    private Boolean insuredPatient;
+
 }

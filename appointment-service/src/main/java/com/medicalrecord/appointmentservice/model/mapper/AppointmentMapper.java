@@ -19,11 +19,13 @@ public interface AppointmentMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "price", source = "date", qualifiedByName = "findPricingHistoryInDate")
     @Mapping(target = "diagnoses", source = "diagnoses", qualifiedByName = "findAllDiagnosesByNameCreateUpdate")
+    @Mapping(target = "insuredPatient", source = "patientUic", qualifiedByName = "insuredPatient")
     AppointmentEntity toEntity(CreateAppointmentDTO createAppointmentDTO);
 
     @Mapping(target = "uic", ignore = true)
     @Mapping(target = "price", source = "date", qualifiedByName = "findPricingHistoryInDate")
     @Mapping(target = "diagnoses", source = "diagnoses", qualifiedByName = "findAllDiagnosesByNameCreateUpdate")
+    @Mapping(target = "insuredPatient", source = "patientUic", qualifiedByName = "insuredPatient")
     AppointmentEntity toEntity(UpdateAppointmentDTO updateAppointmentDTO, @MappingTarget AppointmentEntity appointmentEntity);
 
     List<AppointmentDTO> allToDTO(List<AppointmentEntity> appointments);
