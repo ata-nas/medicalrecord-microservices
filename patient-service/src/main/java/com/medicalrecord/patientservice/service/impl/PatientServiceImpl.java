@@ -77,8 +77,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public boolean patientCurrentlyInsuredByUic(String uic) {
-        return patientRepository.findPatientIfCurrentlyInsuredAndNotDeleted(uic, LocalDate.now()).isPresent();
+    public boolean patientInsuredByUidAtDate(String uic, LocalDate date) {
+        return patientRepository.findPatientIfCurrentlyInsuredAndNotDeleted(uic, date).isPresent();
     }
 
     @Override

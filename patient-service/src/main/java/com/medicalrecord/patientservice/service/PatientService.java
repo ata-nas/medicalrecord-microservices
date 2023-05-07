@@ -7,6 +7,7 @@ import com.medicalrecord.patientservice.model.dto.patient.PercentageInsuredPatie
 import com.medicalrecord.patientservice.model.dto.patient.UpdatePatientDTO;
 import com.medicalrecord.patientservice.model.entity.PatientEntity;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 public interface PatientService {
@@ -25,7 +26,7 @@ public interface PatientService {
 
     void delete(String uic);
 
-    boolean patientCurrentlyInsuredByUic(String uic);
+    boolean patientInsuredByUidAtDate(String uic, LocalDate date);
 
     Set<PatientDTO> getAllPatientsCurrentlyInsured();
 

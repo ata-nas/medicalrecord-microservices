@@ -7,12 +7,14 @@ import com.medicalrecord.patientservice.model.validation.ExistingPatientUicValid
 import com.medicalrecord.patientservice.service.PatientService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -38,14 +40,17 @@ public class PatientController {
         return ResponseEntity.ok(patientService.getByUicToDTO(uic));
     }
 
-    @GetMapping("/insured/{uic}")
-    public ResponseEntity<Void> patientCurrentlyInsured(
+    @GetMapping("/insured/{uic}/{date}")
+    public ResponseEntity<Void> patientInsuredAtDate(
             @PathVariable
             @NotBlank
             @ExistingPatientUicValidation(message = "Illegal path! Patient with given {uic} does not exist!")
-            String uic
+            String uic,
+            @PathVariable
+            @NotNull
+            LocalDate date
     ) {
-        return patientService.patientCurrentlyInsuredByUic(uic) ?
+        return patientService.patientInsuredByUidAtDate(uic, date) ?
                 ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 

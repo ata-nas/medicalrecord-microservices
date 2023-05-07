@@ -50,8 +50,8 @@ public class MapperUtil {
     }
 
     @Named("insuredPatient")
-    public boolean insuredPatient(String patientUic) {
-        return patientClient.patientCurrentlyInsured(patientUic).getStatusCode().is2xxSuccessful();
+    public boolean insuredPatient(String patientUic, String date) {
+        return patientClient.patientInsuredAtDate(patientUic, date).getStatusCode().is2xxSuccessful();
     }
 
 }

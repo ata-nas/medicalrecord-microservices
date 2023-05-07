@@ -8,26 +8,34 @@ import com.medicalrecord.appointmentservice.model.mapper.util.MapperUtil;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = MapperUtil.class)
-public interface AppointmentMapper {
+public abstract class AppointmentMapper {
 
-    AppointmentDTO toDTO(AppointmentEntity appointmentEntity);
+    @Autowired
+    private MapperUtil mapperUtil;
+
+    public abstract AppointmentDTO toDTO(AppointmentEntity appointmentEntity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "price", source = "date", qualifiedByName = "findPricingHistoryInDate")
     @Mapping(target = "diagnoses", source = "diagnoses", qualifiedByName = "findAllDiagnosesByNameCreateUpdate")
-    @Mapping(target = "insuredPatient", source = "patientUic", qualifiedByName = "insuredPatient")
-    AppointmentEntity toEntity(CreateAppointmentDTO createAppointmentDTO);
+    @Mapping(target = "insuredPatient", expression = "java( mapperUtil.insuredPatient(createAppointmentDTO.getPatientUic(), createAppointmentDTO.getDate().toString()) )")
+    public abstract AppointmentEntity toEntity(CreateAppointmentDTO createAppointmentDTO);
 
     @Mapping(target = "uic", ignore = true)
     @Mapping(target = "price", source = "date", qualifiedByName = "findPricingHistoryInDate")
     @Mapping(target = "diagnoses", source = "diagnoses", qualifiedByName = "findAllDiagnosesByNameCreateUpdate")
-    @Mapping(target = "insuredPatient", source = "patientUic", qualifiedByName = "insuredPatient")
-    AppointmentEntity toEntity(UpdateAppointmentDTO updateAppointmentDTO, @MappingTarget AppointmentEntity appointmentEntity);
+    @Mapping(target = "insuredPatient", expression = "java( mapperUtil.insuredPatient(updateAppointmentDTO.getPatientUic(), updateAppointmentDTO.getDate().toString()) )")
+    public abstract AppointmentEntity toEntity(UpdateAppointmentDTO updateAppointmentDTO, @MappingTarget AppointmentEntity appointmentEntity);
 
-    List<AppointmentDTO> allToDTO(List<AppointmentEntity> appointments);
+    public abstract List<AppointmentDTO> allToDTO(List<AppointmentEntity> appointments);
+
+    protected boolean insuredPatient(String uic, String date) {
+        return mapperUtil.insuredPatient(uic, date);
+    }
 
 }

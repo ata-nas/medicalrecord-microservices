@@ -11,7 +11,7 @@ public interface PatientClient {
     @GetExchange("/api/healthcare/bulgaria/patients/{uic}")
     public ResponseEntity<Void> patient(@PathVariable String uic);
 
-    @GetExchange("/api/healthcare/bulgaria/patients/insured/{uic}")
-    public ResponseEntity<Void> patientCurrentlyInsured(@PathVariable String uic);
+    @GetExchange("/api/healthcare/bulgaria/patients/insured/{uic}/{date}")
+    public ResponseEntity<Void> patientInsuredAtDate(@PathVariable String uic, @PathVariable String date);
 
 }

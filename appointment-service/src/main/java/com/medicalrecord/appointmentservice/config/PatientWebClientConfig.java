@@ -1,6 +1,5 @@
 package com.medicalrecord.appointmentservice.config;
 
-import com.medicalrecord.appointmentservice.client.DoctorClient;
 import com.medicalrecord.appointmentservice.client.PatientClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancedExchangeFilterFunction;
