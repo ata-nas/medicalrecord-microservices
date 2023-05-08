@@ -25,4 +25,25 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity, 
                     "WHERE a.doctorUic = :uic"
     )
     BigDecimal getDoctorIncomeByUic(String uic);
+
+    @Query(
+            "SELECT COUNT(*) " +
+                    "FROM (" +
+                    "SELECT a.doctorUic AS doctor_uic " +
+                    "FROM AppointmentEntity a " +
+                    "JOIN a.price p " +
+                    "GROUP BY a.doctorUic " +
+                    "HAVING SUM(p.appointmentFees) > :income" +
+                    ") AS subquery"
+    )
+    long countDoctorsWithHigherIncomeThanGiven(Long income);
+
+    long countAllByPatientUic(String uic);
+
+    @Query(
+            "SELECT COUNT(d) FROM AppointmentEntity a JOIN a.diagnoses d " +
+                    "WHERE d.deleted = FALSE AND d.name = :name"
+    )
+    long countVisitsByDiagnoseName(String name);
+
 }

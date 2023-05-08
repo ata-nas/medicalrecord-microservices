@@ -60,7 +60,7 @@ public class StatsServiceImpl implements StatsService {
 
     @Override
     public CountDoctorIncomeHigherThanDTO countDoctorsWithHigherIncomeThanGiven(long income) {
-        throw new UnsupportedOperationException("To implement");
+        return appointmentClient.countDoctorsWithHigherIncomeThanGiven(income).getBody();
     }
 
     @Override
@@ -75,14 +75,12 @@ public class StatsServiceImpl implements StatsService {
 
     @Override
     public PatientVisitDTO getPatientVisitCount(String uic) {
-        throw new UnsupportedOperationException("To implement");
-//        return appointmentClient.getPatientVisitCount(uic);
+        return appointmentClient.getPatientVisitCount(uic).getBody();
     }
 
     @Override
     public DiagnoseVisitDTO getDiagnoseVisitCount(String name) {
-        throw new UnsupportedOperationException("To implement");
-//        return appointmentClient.getDiagnoseVisitCount(name);
+        return appointmentClient.getDiagnoseVisitCount(name).getBody();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.medicalrecord.appointmentservice.model.stats;
+package com.medicalrecord.appointmentservice.model.dto.stats;
 
 import lombok.Getter;
 import lombok.Setter;

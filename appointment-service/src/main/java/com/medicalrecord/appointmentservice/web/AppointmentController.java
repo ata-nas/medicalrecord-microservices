@@ -3,14 +3,16 @@ package com.medicalrecord.appointmentservice.web;
 import com.medicalrecord.appointmentservice.model.dto.appointment.AppointmentDTO;
 import com.medicalrecord.appointmentservice.model.dto.appointment.CreateAppointmentDTO;
 import com.medicalrecord.appointmentservice.model.dto.appointment.UpdateAppointmentDTO;
-import com.medicalrecord.appointmentservice.model.stats.DoctorIncomeDTO;
-import com.medicalrecord.appointmentservice.model.stats.TotalIncomeDTO;
+import com.medicalrecord.appointmentservice.model.dto.stats.*;
 import com.medicalrecord.appointmentservice.model.validation.ExistingAppointmentUicValidation;
+import com.medicalrecord.appointmentservice.model.validation.ExistingDiagnoseNameValidation;
 import com.medicalrecord.appointmentservice.model.validation.ExistingDoctorUicValidation;
+import com.medicalrecord.appointmentservice.model.validation.ExistingPatientUicValidation;
 import com.medicalrecord.appointmentservice.service.AppointmentService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -96,11 +98,40 @@ public class AppointmentController {
     public ResponseEntity<DoctorIncomeDTO> getDoctorIncomeByUic(
             @PathVariable
             @NotNull
-            @ExistingDoctorUicValidation
+            @ExistingDoctorUicValidation(message = "Invalid path! Doctor with given {uic} does not exist!")
             String uic
     ) {
         return ResponseEntity.ok(appointmentService.getDoctorIncomeByUic(uic));
     }
 
+    @GetMapping("/doctors/income/above/{income}")
+    public ResponseEntity<CountDoctorIncomeHigherThanDTO> countDoctorsWithHigherIncomeThanGiven(
+            @PathVariable
+            @NotNull
+            @PositiveOrZero
+            Long income
+    ) {
+        return ResponseEntity.ok(appointmentService.countDoctorsWithHigherIncomeThanGiven(income));
+    }
+
+    @GetMapping("/patients/visits/{uic}")
+    public ResponseEntity<PatientVisitDTO> getPatientVisitCount(
+            @PathVariable
+            @NotNull
+            @ExistingPatientUicValidation(message = "Invalid path! Patient with given {uic} does not exist!")
+            String uic
+    ) {
+        return ResponseEntity.ok(appointmentService.getPatientVisitCount(uic));
+    }
+
+    @GetMapping("/diagnoses/visits/{name}")
+    public ResponseEntity<DiagnoseVisitDTO> getDiagnoseVisitCount(
+            @PathVariable
+            @NotNull
+            @ExistingDiagnoseNameValidation(message = "Invalid path! Diagnose with given {name} does not exist!")
+            String name
+    ) {
+        return ResponseEntity.ok(appointmentService.getDiagnoseVisitCount(name));
+    }
 
 }

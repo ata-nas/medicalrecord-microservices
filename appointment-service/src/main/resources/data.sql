@@ -1,5 +1,5 @@
 -- healthcare agency
-INSERT INTO pricing_hisotry (id, issue_no, appointment_fees, from_date)
+INSERT INTO pricing_history (id, issue_no, appointment_fees, from_date)
 VALUES (1, '1', 10.00, '2020-01-01');
 
 -- diagnoses

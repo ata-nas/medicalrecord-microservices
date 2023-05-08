@@ -4,10 +4,9 @@ import com.medicalrecord.appointmentservice.exception.notfound.NoSuchAppointment
 import com.medicalrecord.appointmentservice.model.dto.appointment.AppointmentDTO;
 import com.medicalrecord.appointmentservice.model.dto.appointment.CreateAppointmentDTO;
 import com.medicalrecord.appointmentservice.model.dto.appointment.UpdateAppointmentDTO;
+import com.medicalrecord.appointmentservice.model.dto.stats.*;
 import com.medicalrecord.appointmentservice.model.entity.AppointmentEntity;
 import com.medicalrecord.appointmentservice.model.mapper.AppointmentMapper;
-import com.medicalrecord.appointmentservice.model.stats.DoctorIncomeDTO;
-import com.medicalrecord.appointmentservice.model.stats.TotalIncomeDTO;
 import com.medicalrecord.appointmentservice.repository.AppointmentRepository;
 import com.medicalrecord.appointmentservice.service.AppointmentService;
 import jakarta.transaction.Transactional;
@@ -80,6 +79,23 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public DoctorIncomeDTO getDoctorIncomeByUic(String uic) {
         return appointmentMapper.toDTODoctorIncome(appointmentRepository.getDoctorIncomeByUic(uic));
+    }
+
+    @Override
+    public CountDoctorIncomeHigherThanDTO countDoctorsWithHigherIncomeThanGiven(Long income) {
+        return new CountDoctorIncomeHigherThanDTO().setCountDoctorsHigherIncomeThanGiven(
+                appointmentRepository.countDoctorsWithHigherIncomeThanGiven(income)
+        );
+    }
+
+    @Override
+    public PatientVisitDTO getPatientVisitCount(String uic) {
+        return new PatientVisitDTO().setCountVisits(appointmentRepository.countAllByPatientUic(uic));
+    }
+
+    @Override
+    public DiagnoseVisitDTO getDiagnoseVisitCount(String name) {
+        return new DiagnoseVisitDTO().setCountVisits(appointmentRepository.countVisitsByDiagnoseName(name));
     }
 
 }

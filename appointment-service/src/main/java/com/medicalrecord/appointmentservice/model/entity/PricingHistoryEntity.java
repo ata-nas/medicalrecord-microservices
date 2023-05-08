@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "pricing_hisotry")
+@Table(name = "pricing_history")
 public class PricingHistoryEntity extends BaseEntity {
 
     @NotBlank

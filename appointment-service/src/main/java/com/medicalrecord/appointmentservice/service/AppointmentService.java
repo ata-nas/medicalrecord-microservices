@@ -3,9 +3,8 @@ package com.medicalrecord.appointmentservice.service;
 import com.medicalrecord.appointmentservice.model.dto.appointment.AppointmentDTO;
 import com.medicalrecord.appointmentservice.model.dto.appointment.CreateAppointmentDTO;
 import com.medicalrecord.appointmentservice.model.dto.appointment.UpdateAppointmentDTO;
+import com.medicalrecord.appointmentservice.model.dto.stats.*;
 import com.medicalrecord.appointmentservice.model.entity.AppointmentEntity;
-import com.medicalrecord.appointmentservice.model.stats.DoctorIncomeDTO;
-import com.medicalrecord.appointmentservice.model.stats.TotalIncomeDTO;
 
 import java.util.List;
 
@@ -28,4 +27,10 @@ public interface AppointmentService {
     TotalIncomeDTO getTotalIncome();
 
     DoctorIncomeDTO getDoctorIncomeByUic(String uic);
+
+    CountDoctorIncomeHigherThanDTO countDoctorsWithHigherIncomeThanGiven(Long income);
+
+    PatientVisitDTO getPatientVisitCount(String uic);
+
+    DiagnoseVisitDTO getDiagnoseVisitCount(String name);
 }
