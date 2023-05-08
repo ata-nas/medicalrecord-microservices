@@ -3,10 +3,14 @@ package com.medicalrecord.appointmentservice.web;
 import com.medicalrecord.appointmentservice.model.dto.appointment.AppointmentDTO;
 import com.medicalrecord.appointmentservice.model.dto.appointment.CreateAppointmentDTO;
 import com.medicalrecord.appointmentservice.model.dto.appointment.UpdateAppointmentDTO;
+import com.medicalrecord.appointmentservice.model.stats.DoctorIncomeDTO;
+import com.medicalrecord.appointmentservice.model.stats.TotalIncomeDTO;
 import com.medicalrecord.appointmentservice.model.validation.ExistingAppointmentUicValidation;
+import com.medicalrecord.appointmentservice.model.validation.ExistingDoctorUicValidation;
 import com.medicalrecord.appointmentservice.service.AppointmentService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -82,5 +86,21 @@ public class AppointmentController {
         appointmentService.delete(uic);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/income")
+    public ResponseEntity<TotalIncomeDTO> getTotalIncome() {
+        return ResponseEntity.ok(appointmentService.getTotalIncome());
+    }
+
+    @GetMapping("/doctor/income/{uic}")
+    public ResponseEntity<DoctorIncomeDTO> getDoctorIncomeByUic(
+            @PathVariable
+            @NotNull
+            @ExistingDoctorUicValidation
+            String uic
+    ) {
+        return ResponseEntity.ok(appointmentService.getDoctorIncomeByUic(uic));
+    }
+
 
 }

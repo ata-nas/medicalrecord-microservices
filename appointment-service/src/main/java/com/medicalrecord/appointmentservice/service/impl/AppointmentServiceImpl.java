@@ -6,6 +6,8 @@ import com.medicalrecord.appointmentservice.model.dto.appointment.CreateAppointm
 import com.medicalrecord.appointmentservice.model.dto.appointment.UpdateAppointmentDTO;
 import com.medicalrecord.appointmentservice.model.entity.AppointmentEntity;
 import com.medicalrecord.appointmentservice.model.mapper.AppointmentMapper;
+import com.medicalrecord.appointmentservice.model.stats.DoctorIncomeDTO;
+import com.medicalrecord.appointmentservice.model.stats.TotalIncomeDTO;
 import com.medicalrecord.appointmentservice.repository.AppointmentRepository;
 import com.medicalrecord.appointmentservice.service.AppointmentService;
 import jakarta.transaction.Transactional;
@@ -68,6 +70,16 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public void delete(String uic) {
         appointmentRepository.delete(getByUic(uic));
+    }
+
+    @Override
+    public TotalIncomeDTO getTotalIncome() {
+        return appointmentMapper.toDTO(appointmentRepository.getTotalIncome());
+    }
+
+    @Override
+    public DoctorIncomeDTO getDoctorIncomeByUic(String uic) {
+        return appointmentMapper.toDTODoctorIncome(appointmentRepository.getDoctorIncomeByUic(uic));
     }
 
 }

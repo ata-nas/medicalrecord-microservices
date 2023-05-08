@@ -2,6 +2,7 @@ package com.medicalrecord.patientservice.web;
 
 import com.medicalrecord.patientservice.model.dto.patient.CreatePatientDTO;
 import com.medicalrecord.patientservice.model.dto.patient.PatientDTO;
+import com.medicalrecord.patientservice.model.dto.patient.PercentageInsuredPatientDTO;
 import com.medicalrecord.patientservice.model.dto.patient.UpdatePatientDTO;
 import com.medicalrecord.patientservice.model.validation.ExistingPatientUicValidation;
 import com.medicalrecord.patientservice.service.PatientService;
@@ -97,6 +98,26 @@ public class PatientController {
     ) {
         patientService.delete(uic);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/insured")
+    public ResponseEntity<Set<PatientDTO>> getAllPatientsCurrentlyInsured() {
+        return ResponseEntity.ok(patientService.getAllPatientsCurrentlyInsured());
+    }
+
+    @GetMapping("/not-insured")
+    public ResponseEntity<Set<PatientDTO>> getAllPatientsCurrentlyNotInsured() {
+        return ResponseEntity.ok(patientService.getAllPatientsCurrentlyNotInsured());
+    }
+
+    @GetMapping("/percent/insured")
+    public ResponseEntity<PercentageInsuredPatientDTO> getPercentageCurrentlyInsured() {
+        return ResponseEntity.ok(patientService.getPercentageCurrentlyInsured());
+    }
+
+    @GetMapping("/percent/not-insured")
+    public ResponseEntity<PercentageInsuredPatientDTO> getPercentageCurrentlyNotInsured() {
+        return ResponseEntity.ok(patientService.getPercentageCurrentlyNotInsured());
     }
 
 }

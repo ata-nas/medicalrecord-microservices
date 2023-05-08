@@ -20,4 +20,9 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity, 
     )
     BigDecimal getTotalIncome();
 
+    @Query(
+            "SELECT SUM(p.appointmentFees) FROM AppointmentEntity a JOIN a.price p " +
+                    "WHERE a.doctorUic = :uic"
+    )
+    BigDecimal getDoctorIncomeByUic(String uic);
 }

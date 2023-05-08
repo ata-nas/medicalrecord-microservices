@@ -4,6 +4,8 @@ import com.medicalrecord.appointmentservice.model.dto.appointment.AppointmentDTO
 import com.medicalrecord.appointmentservice.model.dto.appointment.CreateAppointmentDTO;
 import com.medicalrecord.appointmentservice.model.dto.appointment.UpdateAppointmentDTO;
 import com.medicalrecord.appointmentservice.model.entity.AppointmentEntity;
+import com.medicalrecord.appointmentservice.model.stats.DoctorIncomeDTO;
+import com.medicalrecord.appointmentservice.model.stats.TotalIncomeDTO;
 
 import java.util.List;
 
@@ -23,4 +25,7 @@ public interface AppointmentService {
 
     void delete(String uic);
 
+    TotalIncomeDTO getTotalIncome();
+
+    DoctorIncomeDTO getDoctorIncomeByUic(String uic);
 }

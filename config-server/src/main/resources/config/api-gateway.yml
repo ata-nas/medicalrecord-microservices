@@ -27,3 +27,7 @@ spring:
           uri: lb://appointment-service
           predicates:
             - Path=/api/healthcare/bulgaria/appointments/**
+        - id: stats-service
+          uri: lb://stats-service
+          predicates:
+            - Path=/api/healthcare/bulgaria/stats/**

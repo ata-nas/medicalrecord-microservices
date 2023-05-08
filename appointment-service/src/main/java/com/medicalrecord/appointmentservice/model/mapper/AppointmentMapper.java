@@ -5,11 +5,14 @@ import com.medicalrecord.appointmentservice.model.dto.appointment.CreateAppointm
 import com.medicalrecord.appointmentservice.model.dto.appointment.UpdateAppointmentDTO;
 import com.medicalrecord.appointmentservice.model.entity.AppointmentEntity;
 import com.medicalrecord.appointmentservice.model.mapper.util.MapperUtil;
+import com.medicalrecord.appointmentservice.model.stats.DoctorIncomeDTO;
+import com.medicalrecord.appointmentservice.model.stats.TotalIncomeDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = MapperUtil.class)
@@ -19,6 +22,10 @@ public abstract class AppointmentMapper {
     private MapperUtil mapperUtil;
 
     public abstract AppointmentDTO toDTO(AppointmentEntity appointmentEntity);
+
+    public abstract TotalIncomeDTO toDTO(BigDecimal totalIncome);
+
+    public abstract DoctorIncomeDTO toDTODoctorIncome(BigDecimal income);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "price", source = "date", qualifiedByName = "findPricingHistoryInDate")
