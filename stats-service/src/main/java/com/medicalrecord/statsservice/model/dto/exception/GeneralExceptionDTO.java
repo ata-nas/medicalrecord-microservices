@@ -1,6 +1,5 @@
 package com.medicalrecord.statsservice.model.dto.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class GeneralExceptionDTO {
 
     private final LocalDateTime timestamp = LocalDateTime.now();

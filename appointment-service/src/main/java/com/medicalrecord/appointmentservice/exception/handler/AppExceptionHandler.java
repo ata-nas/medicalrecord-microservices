@@ -19,15 +19,15 @@ public class AppExceptionHandler {
 
     private final FieldErrorMapper fieldErrorMapper;
 
-//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//    @ExceptionHandler(Exception.class)
-//    private GeneralExceptionDTO handleExceptionFallback(Exception e) {
-//        return new GeneralExceptionDTO(
-//                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-//                HttpStatus.INTERNAL_SERVER_ERROR,
-//                "INTERNAL SERVER ERROR!"
-//        );
-//    }
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    private GeneralExceptionDTO handleExceptionFallback(Exception e) {
+        return new GeneralExceptionDTO(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                "INTERNAL SERVER ERROR!"
+        );
+    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException.class)

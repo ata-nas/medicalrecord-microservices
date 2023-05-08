@@ -1,6 +1,5 @@
 package com.medicalrecord.statsservice.model.dto.stats;
 
-import com.medicalrecord.statsservice.client.PatientClient;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

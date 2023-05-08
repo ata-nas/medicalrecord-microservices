@@ -6,15 +6,12 @@ import com.medicalrecord.statsservice.model.dto.exception.GeneralExceptionDTO;
 import com.medicalrecord.statsservice.model.mapper.FieldErrorMapper;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.codec.DecodingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.time.LocalDate;
 
 @RestControllerAdvice
 @RequiredArgsConstructor
